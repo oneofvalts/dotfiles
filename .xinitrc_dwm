@@ -1,0 +1,14 @@
+# status bar
+while true; do
+xsetroot -name "$( date '+%F %R' ) | $( apm -l )%"
+sleep 1m
+done &
+
+# keyboard configuration
+setxkbmap -layout fr,tr
+xmodmap ~/.Xmodmap
+
+# background image
+feh --bg-fill ~/books.jpg
+
+exec dwm

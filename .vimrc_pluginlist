@@ -1,0 +1,22 @@
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'brennier/quicktex'
+
+Plugin 'flazz/vim-colorschemes'
+Plugin 'chriskempson/base16-vim'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'justinmk/vim-syntax-extra'
+
+Plugin 'tounaishouta/coq.vim'
+Plugin 'oneofvalts/coquille'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'godlygeek/tabular'
+
+call vundle#end()

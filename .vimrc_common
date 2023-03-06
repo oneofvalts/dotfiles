@@ -1,0 +1,50 @@
+color default
+
+set timeoutlen=1000 ttimeoutlen=0
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+set textwidth=73
+
+let mapleader = ","
+let maplocalleader = ","
+
+set nocursorline
+
+map <F3> mzggVGg?`z
+map <F4> ggdG
+
+map <F12> :!clear && make<CR>
+
+set autochdir
+
+nmap <F5> :!pdflatex --shell-escape --synctex=1 %<CR>
+nmap <F6> :!zathura %:r.pdf &<CR><CR>
+nmap <F7> :!lualatex --shell-escape %<CR>
+
+nnoremap O O<Esc>
+
+function! WC()
+  let filename = expand("%")
+  let cmd = "detex " . filename . " | wc -w | tr -d [:space:]"
+  let result = system(cmd)
+  echo result . " words"
+endfunction
+
+command! WC call WC()
+
+autocmd BufWritePre *.tex %s/\s\+$//e
+
+hi Visual term=reverse cterm=reverse guibg=Grey
+set backspace=2
+
+let g:python_recommended_style = 0
+filetype plugin indent on
+
+set scrolloff=7
+
+autocmd FileType asm set syntax=nasm
+
+set background=dark

@@ -1,0 +1,57 @@
+set nocompatible
+
+source ~/.vimrc_common
+source ~/.vimrc_pluginlist
+
+syntax on
+set number
+set laststatus=2
+set noshowmode
+
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline_theme="wombat"
+
+let g:org_agenda_files = ['~/org/']
+
+let g:gutentags_ctags_executable = '/usr/local/bin/uctags'
+
+function ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+
+command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+set undofile
+set backup
+
+autocmd FileType python map <buffer> <Up> :w<CR>
+      \ :exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <Up> <esc>:w<CR>
+      \ :exec '!python3' shellescape(@%, 1)<CR>
+
+au FileType coq call coquille#FNMapping()
+
+source ~/.vimrc_ls
+source ~/.vimrc_tex
+
+set background=dark
+color wombat256

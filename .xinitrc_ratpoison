@@ -1,0 +1,5 @@
+# keyboard configuration
+setxkbmap -layout fr,tr
+xmodmap ~/.Xmodmap
+
+exec ratpoison
