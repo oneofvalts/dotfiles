@@ -1,7 +1,7 @@
 # status bar
 while true; do
 xsetroot -name "$( date '+%F %R' ) | $( apm -l )%"
-sleep 1m
+sleep 60
 done &
 
 # keyboard configuration
